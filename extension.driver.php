@@ -1,5 +1,7 @@
 <?php
 
+	require_once(TOOLKIT . "/class.sectionmanager.php");
+
 	Class extension_dynamic_section_editor extends Extension{
 		
 		protected $_section;
@@ -53,11 +55,12 @@
 				
 				$sectionManager = new SectionManager();
 				$this->_section = $sectionManager->fetch($callback['context'][1]);
-			
-				$this->addPreferences($context);
 				
-				if($this->_section->get('dse_dynamic') == 'yes'){
-					$this->addFieldOptions($context);
+				if(is_object($this->_section)){
+					$this->addPreferences($context);
+					if($this->_section->get('dse_dynamic') == 'yes'){
+						$this->addFieldOptions($context);
+					}
 				}
 			}
 		}
