@@ -56,8 +56,9 @@
 				$sectionManager = new SectionManager();
 				$this->_section = $sectionManager->fetch($callback['context'][1]);
 				
+				$this->addPreferences($context);
+				
 				if(is_object($this->_section)){
-					$this->addPreferences($context);
 					if($this->_section->get('dse_dynamic') == 'yes'){
 						$this->addFieldOptions($context);
 					}
@@ -84,8 +85,10 @@
 			$input->setAttribute('type', 'checkbox');
 			$input->setAttribute('value', 'yes');
 			$input->setAttribute('name', 'meta[dse_dynamic]');
-			if($this->_section->get('dse_dynamic') == 'yes'){
-				$input->setAttribute('checked', 'yes');
+			if(is_object($this->_section)){
+				if($this->_section->get('dse_dynamic') == 'yes'){
+					$input->setAttribute('checked', 'yes');
+				}
 			}
 			
 			$label->appendChild($input);
