@@ -53,6 +53,7 @@
 			$callback = $context['parent']->getPageCallback();
 			if ($callback['driver'] == 'blueprintssections' && in_array($callback['context'][0], array('edit', 'new'))){
 				
+				$context['parent']->Page->addStylesheetToHead(URL . '/extensions/dynamic_section_editor/assets/dse_filter.css');
 				$sectionManager = new SectionManager();
 				$this->_section = $sectionManager->fetch($callback['context'][1]);
 				
@@ -139,7 +140,7 @@
 				
 				$label->appendChild($input);
 				$label->appendChild(new DomText(__(' Show/hide this field based on the value of another field.')));
-				$div->appendChild($label);
+				$domField->appendChild($label);
 				
 				$label = $dom->createElement('label');
 				$label->setAttribute('class', 'meta dse_hide');
@@ -164,7 +165,6 @@
 				$option->appendChild(new DomText(__('hide')));
 				$select->appendChild($option);
 				
-				$label->appendChild(new DomText(__('Dynamic preferences')));
 				$label->appendChild($select);
 				$div->appendChild($label);
 				
@@ -230,10 +230,18 @@
 		public function addScriptsAndStyles(&$context){
 			$sectionManager = new SectionManager();
 			$callback = $context['parent']->getPageCallback();
+			
+			if ($callback['driver'] == 'blueprintssections' && in_array($callback['context'][0], array('edit', 'new'))){
+				$context['parent']->Page->addStylesheetToHead(URL . '/extensions/dynamic_section_editor/assets/dse_filter.css');
+				$context['parent']->Page->addScriptToHead(URL . '/extensions/dynamic_section_editor/assets/dse.js', 222);
+				$context['parent']->Page->addScriptToHead(URL . '/extensions/dynamic_section_editor/assets/dse_dev.js', 222);
+			}
+			
 			$section = $sectionManager->fetch($sectionManager->fetchIDFromHandle($callback['context']['section_handle']));
 			
 			if(is_object($section)){
 				if($section->get('dse_dynamic')){
+					$context['parent']->Page->addScriptToHead(URL . '/extensions/dynamic_section_editor/assets/dse.js', 222);
 					$context['parent']->Page->addScriptToHead(URL . '/extensions/dynamic_section_editor/assets/dse_filter.js', 222);
 				}
 			}

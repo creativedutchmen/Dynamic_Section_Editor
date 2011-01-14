@@ -1,0 +1,40 @@
+div.dse_settings{
+	padding:1em 2em 1.2em 2em;
+	margin:0 -2em;
+	border-right:2em solid #555;
+	background-color:#555;
+	color:white;
+	overflow:hidden;
+	position:relative;
+}
+div.dse_settings label{
+	margin:0;
+	padding:0;
+	float:left;
+}
+div.dse_settings select{
+	height:19px;
+	padding:2px 0;
+}
+div.dse_settings .dse_hide{
+	width:100px;
+	
+}
+div.dse_settings .dse_link{
+	width:200px;
+}
+div.dse_settings .dse_filter_value{
+	position:absolute;
+	top:1em;
+	left:360px;
+	width:100%;
+}
+div.dse_settings .dse_filter_value input{
+	width:100%;
+	margin-right:2em;
+}
+div.dse_settings p{
+	float:left;
+	margin:0 1ex;
+	padding:0;
+}
