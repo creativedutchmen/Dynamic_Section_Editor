@@ -60,9 +60,7 @@
 				$this->addPreferences($context);
 				
 				if(is_object($this->_section)){
-					if($this->_section->get('dse_dynamic') == 'yes'){
-						$this->addFieldOptions($context);
-					}
+					$this->addFieldOptions($context);
 				}
 			}
 		}
@@ -242,7 +240,7 @@
 			if(is_object($section)){
 				if($section->get('dse_dynamic')){
 					$context['parent']->Page->addScriptToHead(URL . '/extensions/dynamic_section_editor/assets/dse.js', 222);
-					$context['parent']->Page->addScriptToHead(URL . '/extensions/dynamic_section_editor/assets/dse_filter.js', 222);
+					$context['parent']->Page->addScriptToHead(URL . '/extensions/dynamic_section_editor/assets/dse_publish.js', 222);
 				}
 			}
 		}
