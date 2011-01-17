@@ -54,7 +54,7 @@
 			if ($callback['driver'] == 'blueprintssections' && in_array($callback['context'][0], array('edit', 'new'))){
 				
 				$context['parent']->Page->addStylesheetToHead(URL . '/extensions/dynamic_section_editor/assets/dse_filter.css');
-				$sectionManager = new SectionManager();
+				$sectionManager = new SectionManager($context['parent']);
 				$this->_section = $sectionManager->fetch($callback['context'][1]);
 				
 				$this->addPreferences($context);
@@ -226,7 +226,7 @@
 		}
 		
 		public function addScriptsAndStyles(&$context){
-			$sectionManager = new SectionManager();
+			$sectionManager = new SectionManager($context['parent']);
 			$callback = $context['parent']->getPageCallback();
 			
 			if ($callback['driver'] == 'blueprintssections' && in_array($callback['context'][0], array('edit', 'new'))){
