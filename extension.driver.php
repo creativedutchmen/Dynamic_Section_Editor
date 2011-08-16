@@ -67,7 +67,7 @@
 		
 		public function addPreferences(&$context){
 			
-			$dom = DOMDocument::loadHTML($context['output']);
+			$dom = @DOMDocument::loadHTML($context['output']);
 			$xpath = new DOMXPath($dom);
 			
 			$meta = $xpath->query("//input[@name='meta[hidden]']")->item(0);
