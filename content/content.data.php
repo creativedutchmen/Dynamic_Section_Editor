@@ -9,7 +9,7 @@ class contentExtensionDynamic_Section_EditorData extends AdministrationPage {
 		
 		$callback = $this->_Parent->getPageCallback();
 		$section_id = $callback['context'][0];
-		$sectionManager = new SectionManager();
+		$sectionManager = new SectionManager(Symphony::Engine());
 		
 		if(!is_numeric($section_id)){
 			$section_id = $sectionManager->fetchIDFromHandle($section_id);
